@@ -4,18 +4,19 @@ import activitys.Activity;
 import activitys.Dance;
 import activitys.DrinkVodka;
 import club.NightClub;
+import music.Music;
 
 /**
  * Created by User on 21.09.2017.
  */
 public abstract class Dancer extends Thread{
     private String name;
-    private String musicDance;
+    private Music musicDance;
     // I'm defined it for CPU not degradation
     private Activity currentActivity = new DrinkVodka();
     private final static NightClub nightClub = NightClub.getInstance();
 
-    public Dancer(String name, String musicDance) {
+    public Dancer(String name, Music musicDance) {
         this.name = name;
         this.musicDance = musicDance;
     }
@@ -32,11 +33,11 @@ public abstract class Dancer extends Thread{
     public void run() {
         Dance dance = new Dance();
         DrinkVodka drinkVodka = new DrinkVodka();
-        String currentMuisicType;
+        Music currentMusicType;
 
         while(true){
-            currentMuisicType = nightClub.getMusic();
-            Activity activity = musicDance.equals(currentMuisicType) ? dance : drinkVodka;
+            currentMusicType = nightClub.getMusic();
+            Activity activity = musicDance.equals(currentMusicType) ? dance : drinkVodka;
             setCurrentActivity(activity);
             sleepDancer(500);
         }

@@ -1,5 +1,7 @@
 package club;
 
+import music.Music;
+
 import java.util.ArrayList;
 
 /**
@@ -8,13 +10,13 @@ import java.util.ArrayList;
 public class NightClub extends Thread {
     private static volatile NightClub instance;
 
-    private ArrayList<String> musicList = new ArrayList<>();
-    private volatile String music;
+    private ArrayList<Music> musicList = new ArrayList<>();
+    private volatile Music music;
 
     {
-        musicList.add("Pop");
-        musicList.add("Rnb");
-        musicList.add("Electrodance");
+        musicList.add(Music.POP);
+        musicList.add(Music.RNB);
+        musicList.add(Music.ELECTROHOUSE);
     }
 
     private NightClub(){}
@@ -32,7 +34,7 @@ public class NightClub extends Thread {
         return localInstance;
     }
 
-    public synchronized String getMusic() {
+    public synchronized Music getMusic() {
         return music;
     }
 
@@ -43,7 +45,7 @@ public class NightClub extends Thread {
      */
     public  void playMusic() throws InterruptedException {
         while (true) {
-            for (String music : musicList) {
+            for (Music music : musicList) {
                 System.out.println("Play " + music);
                 this.music = music;
                 Thread.sleep(5000);
