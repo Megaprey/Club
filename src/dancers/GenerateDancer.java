@@ -7,6 +7,10 @@ public class GenerateDancer {
     private static String nameId = "";
     private static int id = 0;
 
+    /**
+     * lets dancers into the club
+     * @param numberDancer number of dancers
+     */
     public static void startDancers(int numberDancer){
         ExecutorService dancers = Executors.newFixedThreadPool(numberDancer);
         for(int i = 0; i < numberDancer; i++){
@@ -14,6 +18,10 @@ public class GenerateDancer {
         }
     }
 
+    /**
+     *
+     * @return a dancer with a random name
+     */
     private static Dancer generateDancer(){
         String name1 = "Алексей" + nameId;
         String name2 = "Анна" + nameId;
